@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Xavier's Thoughts</title>
+    <title>Bilan de 7 années en SSII</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -10,15 +10,15 @@
     <meta name="generator" content="JBake">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/asciidoctor.css" rel="stylesheet">
-    <link href="css/base.css" rel="stylesheet">
-    <link href="css/prettify.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../../favicon.ico">
   </head>
   <body onload="prettyPrint()">
     <div id="wrap">
@@ -41,13 +41,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">Xavier's Thoughts</a>
+          <a class="navbar-brand" href="../../">Xavier's Thoughts</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="feed.xml">Subscribe</a></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
             <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -68,13 +68,14 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <div class="container">
+    <div class="container">	
 	<div class="page-header">
-		<h1>Blog</h1>
+		<h1>Bilan de 7 années en SSII</h1>
 	</div>
-  			<a href="blog/2017/ma-vie-ssii.html"><h1>Bilan de 7 années en SSII</h1></a>
-  			<p>22 mars 2017</p>
-  			<p><div class="paragraph">
+
+	<p><em>22 mars 2017</em></p>
+
+	<p><div class="paragraph">
 <p>Récemment, j&#8217;ai vu que mes anciens collègues de la SSII S&#8230;&#8203;.A (disons SA) se congratulaient d&#8217;être présents au super kick-off de
 l&#8217;entreprise. Vous savez, le super kick-off ou seuls les managers sont conviés&#8230;&#8203; Je suis, tellement, en décalage avec cette
 vision, que je pense que le moment est venu pour moi de faire le point sur ma vie en SSII.</p>
@@ -172,177 +173,9 @@ Bref prenez en main votre carrière et votre vie sans la laisser aux mains d&#82
 <div class="paragraph">
 <p>Signé un dév</p>
 </div></p>
-  			<a href="about.html"><h1>About Me</h1></a>
-  			<p>21 mars 2017</p>
-  			<p><div class="paragraph">
-<p>I am a senior software engineer working mostly in Java. I live in Montreal.
-Everything I write in this blog do not engage the responsibility of anyone else.</p>
-</div></p>
-  			<a href="blog/2015/maven-outside-classpath.html"><h1>Utiliser des plugins Maven avec des sources en dehors du répertoire src/main/java</h1></a>
-  			<p>21 juillet 2015</p>
-  			<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tout d&#8217;abord, le non respect des conventions limite le choix des plugins utilisables par Maven. Par exemple, je n&#8217;ai pas réussi à faire marcher le plugin PMD. En effet, l&#8217;option sourcepath n&#8217;existe pas sur tous les plugins.</p>
-</div>
-<div class="paragraph">
-<p>C&#8217;est pourquoi, je préconise le respect des conventions mais dans le cas de ce projet, il n&#8217;était pas possible de les respecter sans un coût non négligeable sur ce projet.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="javadoc">Javadoc</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;plugin&gt;
-&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
- &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
-  &lt;version&gt;2.10.3&lt;/version&gt;
-   &lt;configuration&gt;
-    &lt;failOnError&gt;false&lt;/failOnError&gt;
-   &lt;/configuration&gt;
-   &lt;reportSets&gt;
-    &lt;reportSet&gt;
-     &lt;id&gt;html&lt;/id&gt;
-     &lt;configuration&gt;
-      &lt;sourcepath&gt;chemin vers les sources&lt;/sourcepath&gt;
-     &lt;/configuration&gt;
-     &lt;reports&gt;
-      &lt;report&gt;javadoc&lt;/report&gt;
-     &lt;/reports&gt;
-    &lt;/reportSet&gt;
-    &lt;reportSet&gt;
-     &lt;id&gt;test-html&lt;/id&gt;
-     &lt;configuration&gt;
-       &lt;sourcepath&gt;chemin vers les sources de tests&lt;/sourcepath&gt;
-     &lt;/configuration&gt;
-     &lt;reports&gt;
-       &lt;report&gt;test-javadoc&lt;/report&gt;
-     &lt;/reports&gt;
-    &lt;/reportSet&gt;
-   &lt;/reportSets&gt;
-&lt;/plugin&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>L&#8217;option "failOnError" permet de ne pas faire échouer la génération de la documentation lorsque les références ne sont pas trouvées. En effet, je n&#8217;ai pas trouvé de moyen d&#8217;ajouter le classpath. Il y avait bien une option qui prend les dépendances mais dans mon cas, j&#8217;ai encore pas mal de librairies qui ne sont pas mavenisées.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="xref">Xref</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;plugin&gt;
- &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-  &lt;artifactId&gt;maven-jxr-plugin&lt;/artifactId&gt;
-   &lt;version&gt;2.5&lt;/version&gt;
-   &lt;reportSets&gt;
-    &lt;reportSet&gt;
-     &lt;id&gt;aggregate&lt;/id&gt;
-     &lt;configuration&gt;
-      &lt;sourcePath&gt;chemin vers les sources&lt;/sourcePath&gt;
-     &lt;/configuration&gt;
-     &lt;reports&gt;
-      &lt;report&gt;aggregate&lt;/report&gt;
-     &lt;/reports&gt;
-    &lt;/reportSet&gt;
-   &lt;/reportSets&gt;
- &lt;/plugin&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Attention dans le cas de xref, l&#8217;option est sourcePath et non sourcepath.</p>
-</div>
-</div>
-</div></p>
-  			<a href="blog/2011/maven-settings-cmd-line.html"><h1>[MAVEN] settings en ligne de commande</h1></a>
-  			<p>14 novembre 2011</p>
-  			<p><div class="paragraph">
-<p>Indiquer un settings.xml pour maven en ligne de commande
-Il est possible de surcharger les settings.xml de base pour maven.</p>
-</div>
-<div class="paragraph">
-<p>mvn install --settings c:\user\settings.xml
-    --global-settings c:\global\settings.xml</p>
-</div></p>
-  			<a href="blog/2011/extrernalize-eclipse-plugin.html"><h1>Externaliser un plugin Eclipse</h1></a>
-  			<p>17 septembre 2011</p>
-  			<p><div class="paragraph">
-<p>Afin de ne pas polluer un environnement Eclipse existant lors du test d&#8217;un plugin, Eclipse offre la possibilité d&#8217;externaliser ses plugins.
-Pour cela, il faut utiliser les fichiers link. Ces fichiers sont de simples fichier texte contenant le chemin vers le plugin.</p>
-</div>
-<div class="paragraph">
-<p>Exemple : Plugin m2.</p>
-</div>
-<div class="paragraph">
-<p>Le plugin m2 est installé dans le répertoire suivant :
-D:\tools\org\sonatype\m2eclipse-plugin\0.12.1</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-&gt; features
--&gt;plugins</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Puis un fichier m2.link est initialisé dans le répertoire dropins d&#8217;Eclipse. Ce fichier contient la ligne suivante :
-path=D:/tools/org/sonatype/m2eclipse-plugin/0.12.1</p>
-</div>
-<div class="paragraph">
-<p>Lors du lancement d&#8217;Eclipse, il est possible de vérifier que le plugin est installé. Pour le désinstaller, il suffit de supprimer le fichier et de lancer Eclipse en mode clean.</p>
-</div>
-<div class="paragraph">
-<p>Le plus dur est de récupérer les répertoires d&#8217;un plugin au travers d&#8217;un update site. Heureusement, il est possible de récupérer les fichiers spécifique à un plugin en lançant Eclipse avec le paramètre -configuration.
-Ce paramètre permet de spécifier un répertoire qui contiendra la configuration spécifique à notre Eclipse. Il permet d&#8217;avoir un même répertoire pour l&#8217;ide de base pour plusieurs projets différents. Ainsi, ces projets peuvent avoir des plugins différents et utiliser le même répertoire de base pour l&#8217;ide. Le répertoire configuration contient les éléments suivants :</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-&gt;configuration
--&gt;p2
--&gt;artifacts.xml</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Avec ce paramètrage, il est possible d&#8217;utiliser l&#8217;installeur de plugin. Une fois l&#8217;installation d&#8217;un plugin terminée, le répertoire configuration contient les éléments suivants :</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-&gt;configuration
--&gt;p2
--&gt;artifacts.xml
--&gt;plugins
--&gt;features</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Les répertoires plugins et features correspondent au plugin nouvellement installé.</p>
-</div>
-<div class="paragraph">
-<p>Pour externaliser ce plugin, il faut copier les répertoires plugins et features dans un nouveau répertoire.
-Voir le plugin m2 plus haut.</p>
-</div></p>
-  			<a href="blog/2011/jboss-conf.html"><h1>[JBOSS] Utiliser une configuration en dehors du JBOSS_HOME</h1></a>
-  			<p>16 août 2011</p>
-  			<p><div class="paragraph">
-<p>Le but est de décorreler une configuration JBOSS du serveur lui même afin d&#8217;avoir cette configuration en gestion de conf.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-Djboss.server.base.dir="D:\projects\tartanpion\jboss\server"
--Djboss.server.base.url="file:D:\projects\tartanpion\jboss\server" -c tartanpion</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Dans ce cas, le JBOSS_HOME est D:/tools/jboss et il n&#8217;y pas de configuration tartanpion dans le répertoire JBOSS_HOME/server</p>
-</div></p>
-	
+
 	<hr />
 	
-	<p>Older posts are available in the <a href="archive.html">archive</a>.</p>
-
 		</div>
 		<div id="push"></div>
     </div>
@@ -356,9 +189,9 @@ Voir le plugin m2 plus haut.</p>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/prettify.js"></script>
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
     
   </body>
 </html>
