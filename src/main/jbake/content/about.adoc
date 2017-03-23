@@ -1,0 +1,10 @@
+= About Me
+Xavier BOUCLET
+2017-03-21
+:jbake-type: post
+:jbake-status: published
+:jbake-tags: blog, asciidoc
+:idprefix:
+
+I am a senior software engineer working mostly in Java. I live in Montreal.
+Everything I write in this blog do not engage the responsibility of anyone else.
