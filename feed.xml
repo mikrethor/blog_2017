@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xavier's Thoughts</title>
+    <link>http://mikrethor.github.io/blog/</link>
+    <atom:link href="http://mikrethor.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
+    <description>JBake Bootstrap Template</description>
+    <language>en-gb</language>
+    <pubDate>mer., 22 mars 2017 21:22:08 -0400</pubDate>
+    <lastBuildDate>mer., 22 mars 2017 21:22:08 -0400</lastBuildDate>
+
+    <item>
+      <title>About Me</title>
+      <link>http://mikrethor.github.io/blog//about.html</link>
+      <pubDate>mar., 21 mars 2017 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">about.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I am a senior software engineer working mostly in Java. I live in Montreal.
+Everything I write in this blog do not engage the responsibility of anyone else.&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Utiliser des plugins Maven avec des sources en dehors du répertoire src/main/java</title>
+      <link>http://mikrethor.github.io/blog//blog/2015/maven-outside-classpath.html</link>
+      <pubDate>mar., 21 juil. 2015 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2015/maven-outside-classpath.html</guid>
+      	<description>
+	&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Tout d&amp;#8217;abord, le non respect des conventions limite le choix des plugins utilisables par Maven. Par exemple, je n&amp;#8217;ai pas réussi à faire marcher le plugin PMD. En effet, l&amp;#8217;option sourcepath n&amp;#8217;existe pas sur tous les plugins.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;C&amp;#8217;est pourquoi, je préconise le respect des conventions mais dans le cas de ce projet, il n&amp;#8217;était pas possible de les respecter sans un coût non négligeable sur ce projet.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;javadoc&quot;&gt;Javadoc&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;plugin&amp;gt;
+&amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;maven-javadoc-plugin&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;2.10.3&amp;lt;/version&amp;gt;
+   &amp;lt;configuration&amp;gt;
+    &amp;lt;failOnError&amp;gt;false&amp;lt;/failOnError&amp;gt;
+   &amp;lt;/configuration&amp;gt;
+   &amp;lt;reportSets&amp;gt;
+    &amp;lt;reportSet&amp;gt;
+     &amp;lt;id&amp;gt;html&amp;lt;/id&amp;gt;
+     &amp;lt;configuration&amp;gt;
+      &amp;lt;sourcepath&amp;gt;chemin vers les sources&amp;lt;/sourcepath&amp;gt;
+     &amp;lt;/configuration&amp;gt;
+     &amp;lt;reports&amp;gt;
+      &amp;lt;report&amp;gt;javadoc&amp;lt;/report&amp;gt;
+     &amp;lt;/reports&amp;gt;
+    &amp;lt;/reportSet&amp;gt;
+    &amp;lt;reportSet&amp;gt;
+     &amp;lt;id&amp;gt;test-html&amp;lt;/id&amp;gt;
+     &amp;lt;configuration&amp;gt;
+       &amp;lt;sourcepath&amp;gt;chemin vers les sources de tests&amp;lt;/sourcepath&amp;gt;
+     &amp;lt;/configuration&amp;gt;
+     &amp;lt;reports&amp;gt;
+       &amp;lt;report&amp;gt;test-javadoc&amp;lt;/report&amp;gt;
+     &amp;lt;/reports&amp;gt;
+    &amp;lt;/reportSet&amp;gt;
+   &amp;lt;/reportSets&amp;gt;
+&amp;lt;/plugin&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;L&amp;#8217;option &quot;failOnError&quot; permet de ne pas faire échouer la génération de la documentation lorsque les références ne sont pas trouvées. En effet, je n&amp;#8217;ai pas trouvé de moyen d&amp;#8217;ajouter le classpath. Il y avait bien une option qui prend les dépendances mais dans mon cas, j&amp;#8217;ai encore pas mal de librairies qui ne sont pas mavenisées.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;xref&quot;&gt;Xref&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;plugin&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;maven-jxr-plugin&amp;lt;/artifactId&amp;gt;
+   &amp;lt;version&amp;gt;2.5&amp;lt;/version&amp;gt;
+   &amp;lt;reportSets&amp;gt;
+    &amp;lt;reportSet&amp;gt;
+     &amp;lt;id&amp;gt;aggregate&amp;lt;/id&amp;gt;
+     &amp;lt;configuration&amp;gt;
+      &amp;lt;sourcePath&amp;gt;chemin vers les sources&amp;lt;/sourcePath&amp;gt;
+     &amp;lt;/configuration&amp;gt;
+     &amp;lt;reports&amp;gt;
+      &amp;lt;report&amp;gt;aggregate&amp;lt;/report&amp;gt;
+     &amp;lt;/reports&amp;gt;
+    &amp;lt;/reportSet&amp;gt;
+   &amp;lt;/reportSets&amp;gt;
+ &amp;lt;/plugin&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Attention dans le cas de xref, l&amp;#8217;option est sourcePath et non sourcepath.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>[MAVEN] settings en ligne de commande</title>
+      <link>http://mikrethor.github.io/blog//blog/2011/maven-settings-cmd-line.html</link>
+      <pubDate>lun., 14 nov. 2011 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2011/maven-settings-cmd-line.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Indiquer un settings.xml pour maven en ligne de commande
+Il est possible de surcharger les settings.xml de base pour maven.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;mvn install --settings c:\user\settings.xml
+    --global-settings c:\global\settings.xml&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Externaliser un plugin Eclipse</title>
+      <link>http://mikrethor.github.io/blog//blog/2011/extrernalize-eclipse-plugin.html</link>
+      <pubDate>sam., 17 sept. 2011 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2011/extrernalize-eclipse-plugin.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Afin de ne pas polluer un environnement Eclipse existant lors du test d&amp;#8217;un plugin, Eclipse offre la possibilité d&amp;#8217;externaliser ses plugins.
+Pour cela, il faut utiliser les fichiers link. Ces fichiers sont de simples fichier texte contenant le chemin vers le plugin.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Exemple : Plugin m2.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Le plugin m2 est installé dans le répertoire suivant :
+D:\tools\org\sonatype\m2eclipse-plugin\0.12.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;-&amp;gt; features
+-&amp;gt;plugins&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Puis un fichier m2.link est initialisé dans le répertoire dropins d&amp;#8217;Eclipse. Ce fichier contient la ligne suivante :
+path=D:/tools/org/sonatype/m2eclipse-plugin/0.12.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Lors du lancement d&amp;#8217;Eclipse, il est possible de vérifier que le plugin est installé. Pour le désinstaller, il suffit de supprimer le fichier et de lancer Eclipse en mode clean.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Le plus dur est de récupérer les répertoires d&amp;#8217;un plugin au travers d&amp;#8217;un update site. Heureusement, il est possible de récupérer les fichiers spécifique à un plugin en lançant Eclipse avec le paramètre -configuration.
+Ce paramètre permet de spécifier un répertoire qui contiendra la configuration spécifique à notre Eclipse. Il permet d&amp;#8217;avoir un même répertoire pour l&amp;#8217;ide de base pour plusieurs projets différents. Ainsi, ces projets peuvent avoir des plugins différents et utiliser le même répertoire de base pour l&amp;#8217;ide. Le répertoire configuration contient les éléments suivants :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;-&amp;gt;configuration
+-&amp;gt;p2
+-&amp;gt;artifacts.xml&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Avec ce paramètrage, il est possible d&amp;#8217;utiliser l&amp;#8217;installeur de plugin. Une fois l&amp;#8217;installation d&amp;#8217;un plugin terminée, le répertoire configuration contient les éléments suivants :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;-&amp;gt;configuration
+-&amp;gt;p2
+-&amp;gt;artifacts.xml
+-&amp;gt;plugins
+-&amp;gt;features&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Les répertoires plugins et features correspondent au plugin nouvellement installé.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Pour externaliser ce plugin, il faut copier les répertoires plugins et features dans un nouveau répertoire.
+Voir le plugin m2 plus haut.&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>[JBOSS] Utiliser une configuration en dehors du JBOSS_HOME</title>
+      <link>http://mikrethor.github.io/blog//blog/2011/jboss-conf.html</link>
+      <pubDate>mar., 16 août 2011 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2011/jboss-conf.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Le but est de décorreler une configuration JBOSS du serveur lui même afin d&amp;#8217;avoir cette configuration en gestion de conf.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;-Djboss.server.base.dir=&quot;D:\projects\tartanpion\jboss\server&quot;
+-Djboss.server.base.url=&quot;file:D:\projects\tartanpion\jboss\server&quot; -c tartanpion&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Dans ce cas, le JBOSS_HOME est D:/tools/jboss et il n&amp;#8217;y pas de configuration tartanpion dans le répertoire JBOSS_HOME/server&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+
+  </channel> 
+</rss>
