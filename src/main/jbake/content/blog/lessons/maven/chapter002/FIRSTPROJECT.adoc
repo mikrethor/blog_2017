@@ -4,7 +4,6 @@ Xavier Bouclet
 :jbake-type: page
 :jbake-tags: documentation, manual
 :jbake-status: published
-= Mon premier projet Maven
 
 Maven est devenu populaire grâce au principe de "convention over configuration". Ce qui veut dire qu'un projet Maven ressemble à tout autre projet Maven.
 En effet, dans un projet Maven, il y aura toujours 3 éléments :
@@ -235,7 +234,7 @@ Pour les repository de plugins Maven, il faut utiliser les balises <pluginReposi
         <updatePolicy>never</updatePolicy>
       </releases>
     </pluginRepository>
-  </pluginRepositories>
+</pluginRepositories>
 
 -----
 
@@ -248,11 +247,55 @@ Sans les plugins, Maven ne serait qu'une coquille vide. C'est pourquoi, il tél�
 === Définition
 
 Un plugin Maven est une fonctionnalité. Plus un projet a besoin de fonctionnalité, plus il utilise de plugins.
+Maven est un framework d'exécution de plugins. Les plugins font tout le travail.
+Pour trouver un goal spécifique qui va faire la tâche , il faut regarder plus bas dans la liste ci-dessous ou chercher un plugin spécifique.
 
+Il existe de type de plugins :
 
-http://maven.apache.org/plugins/
+- des plugins de Build (construction du projet)
+- des plugins de Reporting (génération de la documentation du projet)
 
-pour utiliser un plugin .... TODO
+==== Les Build plugins
+
+Les plugins de construction sont définis dans les balises <build/> du fichier POM.
+
+Ci-dessous, un exemple de déclaration du plugin "maven-compiler-plugin"
+
+[source,xml]
+----
+<build>
+    <plugins>
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.6.1</version>
+        </plugin>
+     </plugins>
+</build>
+----
+
+==== Les Reporting plugins
+
+Les plugins de documentation sont définis dans les balises <reporting/> du fichier POM.
+
+Ci-dessous, un exemple de déclaration du plugin "maven-surefire-report-plugin"
+
+[source,xml]
+----
+<project>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.19.1</version>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>
+----
+
+Les plugins reporting sont utilisation dans le Maven site qui sera abordé plus tard.
 
 === Les cores
 
@@ -333,7 +376,7 @@ pour utiliser un plugin .... TODO
 |génération d'un fichier DOAP à partir du fichier POM
 
 |docck
-|Plugin de vérification de la documentation
+|plugin de vérification de la documentation
 
 |javadoc
 |génération de la javadoc à partir du code
@@ -378,55 +421,56 @@ pour utiliser un plugin .... TODO
 |gestion des dépendances (copie, décompression) et analyse
 
 |enforcer
-|Environmental constraint checking (Maven Version, JDK etc), User Custom Rule Execution.
+|vérification des contraintes de l'environnement (Maven Version, JDK etc), éxecution des règles spécifique de l'utilisateur.
 
 |gpg
 |création de signatures pour les artefacts et les poms.
 
 |help
-|Get information about the working environment for the project.
+|retourne les informations sur l'environnement de travail du projet.
 
 |invoker
-|Run a set of Maven projects and verify the output.
+|éxecution d'un ensemble de projets et vérification du résultat.
 
 |jarsigner
-|Signs or verifies project artifacts.
+|signature ou vérification des artefacts.
 
 |patch
-|Use the gnu patch tool to apply patch files to source code.
+|utilisation de l'outil gnu patch pour l'application d'un patch sur le code source.
 
 |pdf
-|Generate a PDF version of your project's documentation.
+|génération de la documentation PDF du projet.
 
 |plugin
-|Create a Maven plugin descriptor for any mojos found in the source tree, to include in the JAR.
+|créer un descripteur de plugin Maven pour tous les mojos trouvés dans l'arbre source, à inclure dans le JAR
 
 |release
-|Release the current project - updating the POM and tagging in the SCM.
+|lancement de la release du projet (maj du POM, tag).
 
 |remote-resources
-|Copy remote resources to the output directory for inclusion in the artifact.
+|copie de resources distantes à inclure dans l'artefcat.
 
 |repository
 |Plugin to help with repository-based tasks.
 
 |scm
-|Execute SCM commands for the current project.
+|éxecution des commandes SCM sur le projet courant.
 
 |scm-publish
-|Publish your Maven website to a scm location.
+|publie le projet Maven dans un SCM.
 
 |stage
-|Assists with release staging and promotion.
+|assistance à la release et à la promotion.
 
 |toolchains
-|Allows to share configuration across plugins.
+|autorise le partage de configuration entre plugins.
 
 |===
 
 === Les autres
 
 Il existe une multitude d'autres plugins pour pléthore de besoins :
+
 - des plugins entreprise
 - github
 - ....
@@ -439,4 +483,113 @@ En plus des plugins existants, il est possible de créer son propre plugin. Nous
 
 === Les goals standards
 
+==== Clean Lifecycle
+[cols="2*"]
+|===
+|pre-clean
+|execute processes needed prior to the actual project cleaning
+
+|clean
+|remove all files generated by the previous build
+
+|post-clean
+|execute processes needed to finalize the project cleaning
+|===
+
+==== Default Lifecycle
+
+[cols="2*"]
+|===
+|validate
+|validate the project is correct and all necessary information is available.
+
+|initialize
+|initialize build state, e.g. set properties or create directories.
+
+|generate-sources
+|generate any source code for inclusion in compilation.
+
+|process-sources
+|process the source code, for example to filter any values.
+
+|generate-resources
+|generate resources for inclusion in the package.
+
+|process-resources
+|copy and process the resources into the destination directory, ready for packaging.
+
+|compile
+|compile the source code of the project.
+
+|process-classes
+|post-process the generated files from compilation, for example to do bytecode enhancement on Java classes.
+
+|generate-test-sources
+|generate any test source code for inclusion in compilation.
+
+|process-test-sources
+|process the test source code, for example to filter any values.
+
+|generate-test-resources
+|create resources for testing.
+
+|process-test-resources
+|copy and process the resources into the test destination directory.
+
+|test-compile
+|compile the test source code into the test destination directory
+
+|process-test-classes
+|post-process the generated files from test compilation, for example to do bytecode enhancement on Java classes. For Maven 2.0.5 and above.
+
+|test
+|run tests using a suitable unit testing framework. These tests should not require the code be packaged or deployed.
+
+|prepare-package
+|perform any operations necessary to prepare a package before the actual packaging. This often results in an unpacked, processed version of the package. (Maven 2.1 and above)
+
+|package
+|take the compiled code and package it in its distributable format, such as a JAR.
+
+|pre-integration-test
+|perform actions required before integration tests are executed. This may involve things such as setting up the required environment.
+
+|integration-test
+|process and deploy the package if necessary into an environment where integration tests can be run.
+
+|post-integration-test
+|perform actions required after integration tests have been executed. This may including cleaning up the environment.
+
+|verify
+|run any checks to verify the package is valid and meets quality criteria.
+
+|install
+|install the package into the local repository, for use as a dependency in other projects locally.
+
+|deploy
+|done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.
+|===
+
+==== Site Lifecycle
+
+[cols="2*"]
+|===
+|pre-site
+|execute processes needed prior to the actual project site generation
+
+|site
+|generate the project's site documentation
+
+|post-site
+|execute processes needed to finalize the site generation, and to prepare for site deployment
+
+|site-deploy
+|deploy the generated site documentation to the specified web server
+|===
+
 === Les goals spécifiques
+
+Les goals spécifiques définis dans les plugins créés en dehors de l'équipe Maven.
+Tout développeur peut définir un goal spécifique en créant son propre plugin.
+
+Nous aborderons la création d'un plugin spécifique plus tard.

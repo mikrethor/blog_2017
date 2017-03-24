@@ -15,7 +15,6 @@
                 <groupId>com.blazebit</groupId>
                 <artifactId>jbake-maven-plugin</artifactId>
                 <version>1.0.0</version>
-
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
@@ -25,9 +24,7 @@
                         <configuration>
 
                             <properties>
-                                <requires>
-                                    <require>asciidoctor-diagram</require>
-                                </requires>
+
                                 <site.url>http://localhost:8820/</site.url>
                             </properties>
                         </configuration>
@@ -72,7 +69,6 @@
                 </dependencies>
             </plugin>
         </plugins>
-
     </build>
 
     <dependencies>

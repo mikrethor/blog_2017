@@ -1,4 +1,9 @@
-== Les streams
+= Les streams
+Xavier Bouclet
+2017-03-23
+:jbake-type: page
+:jbake-tags: documentation, manual
+:jbake-status: published
 
 === Principe
 

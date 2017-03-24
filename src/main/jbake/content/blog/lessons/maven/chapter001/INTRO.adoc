@@ -5,8 +5,6 @@ Xavier Bouclet
 :jbake-tags: documentation, manual
 :jbake-status: published
 
-= Introduction
-
 	Maven a été créé en 2004 avec la version 1 qui était très proche de Ant. Puis s'est démocratisé, avec la version 2 (2005) puis 3 (2010).
 	C'est un outil pour gérer et automatiser la construction des projets Java. Mais pas seulement, il est possible d'utilisé Maven pour des projets PHP ou C++.
 	 Cependant l'intégration est beaucoup moins poussée qu'en Java.
