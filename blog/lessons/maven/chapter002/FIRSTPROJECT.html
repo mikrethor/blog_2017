@@ -75,7 +75,8 @@
 
 	<p><em>21 mars 2017</em></p>
 
-	<p><h1 id="_mon_premier_projet_maven" class="sect0">Mon premier projet Maven</h1>
+	<p><div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>Maven est devenu populaire grâce au principe de "convention over configuration". Ce qui veut dire qu&#8217;un projet Maven ressemble à tout autre projet Maven.
 En effet, dans un projet Maven, il y aura toujours 3 éléments :</p>
@@ -95,6 +96,8 @@ En effet, dans un projet Maven, il y aura toujours 3 éléments :</p>
 </div>
 <div class="paragraph">
 <p>L&#8217;autre aspect est l&#8217;existence d&#8217;un écosystème varié de plugin permettant de faire tout est n&#8217;importe quoi.</p>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="_le_fichier_pom">Le fichier POM</h2>
@@ -392,7 +395,7 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
         &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;
       &lt;/releases&gt;
     &lt;/pluginRepository&gt;
-  &lt;/pluginRepositories&gt;</code></pre>
+&lt;/pluginRepositories&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -410,13 +413,71 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
 <div class="sect2">
 <h3 id="_définition">Définition</h3>
 <div class="paragraph">
-<p>Un plugin Maven est une fonctionnalité. Plus un projet a besoin de fonctionnalité, plus il utilise de plugins.</p>
+<p>Un plugin Maven est une fonctionnalité. Plus un projet a besoin de fonctionnalité, plus il utilise de plugins.
+Maven est un framework d&#8217;exécution de plugins. Les plugins font tout le travail.
+Pour trouver un goal spécifique qui va faire la tâche , il faut regarder plus bas dans la liste ci-dessous ou chercher un plugin spécifique.</p>
 </div>
 <div class="paragraph">
-<p><a href="http://maven.apache.org/plugins/" class="bare">http://maven.apache.org/plugins/</a></p>
+<p>Il existe de type de plugins :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>des plugins de Build (construction du projet)</p>
+</li>
+<li>
+<p>des plugins de Reporting (génération de la documentation du projet)</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_les_build_plugins">Les Build plugins</h4>
+<div class="paragraph">
+<p>Les plugins de construction sont définis dans les balises &lt;build/&gt; du fichier POM.</p>
 </div>
 <div class="paragraph">
-<p>pour utiliser un plugin &#8230;&#8203;. TODO</p>
+<p>Ci-dessous, un exemple de déclaration du plugin "maven-compiler-plugin"</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;build&gt;
+    &lt;plugins&gt;
+       &lt;plugin&gt;
+          &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+          &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+          &lt;version&gt;3.6.1&lt;/version&gt;
+        &lt;/plugin&gt;
+     &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_les_reporting_plugins">Les Reporting plugins</h4>
+<div class="paragraph">
+<p>Les plugins de documentation sont définis dans les balises &lt;reporting/&gt; du fichier POM.</p>
+</div>
+<div class="paragraph">
+<p>Ci-dessous, un exemple de déclaration du plugin "maven-surefire-report-plugin"</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;project&gt;
+  &lt;reporting&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-surefire-report-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.19.1&lt;/version&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/reporting&gt;
+&lt;/project&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Les plugins reporting sont utilisation dans le Maven site qui sera abordé plus tard.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -535,7 +596,7 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">docck</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Plugin de vérification de la documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plugin de vérification de la documentation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">javadoc</p></td>
@@ -598,7 +659,7 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">enforcer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Environmental constraint checking (Maven Version, JDK etc), User Custom Rule Execution.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vérification des contraintes de l&#8217;environnement (Maven Version, JDK etc), éxecution des règles spécifique de l&#8217;utilisateur.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">gpg</p></td>
@@ -606,35 +667,35 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">help</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get information about the working environment for the project.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">retourne les informations sur l&#8217;environnement de travail du projet.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">invoker</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Run a set of Maven projects and verify the output.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">éxecution d&#8217;un ensemble de projets et vérification du résultat.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jarsigner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signs or verifies project artifacts.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signature ou vérification des artefacts.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">patch</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use the gnu patch tool to apply patch files to source code.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">utilisation de l&#8217;outil gnu patch pour l&#8217;application d&#8217;un patch sur le code source.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pdf</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generate a PDF version of your project&#8217;s documentation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">génération de la documentation PDF du projet.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">plugin</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Create a Maven plugin descriptor for any mojos found in the source tree, to include in the JAR.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">créer un descripteur de plugin Maven pour tous les mojos trouvés dans l&#8217;arbre source, à inclure dans le JAR</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">release</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Release the current project - updating the POM and tagging in the SCM.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lancement de la release du projet (maj du POM, tag).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">remote-resources</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Copy remote resources to the output directory for inclusion in the artifact.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">copie de resources distantes à inclure dans l&#8217;artefcat.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">repository</p></td>
@@ -642,19 +703,19 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scm</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Execute SCM commands for the current project.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">éxecution des commandes SCM sur le projet courant.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scm-publish</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Publish your Maven website to a scm location.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">publie le projet Maven dans un SCM.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">stage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Assists with release staging and promotion.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assistance à la release et à la promotion.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">toolchains</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to share configuration across plugins.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">autorise le partage de configuration entre plugins.</p></td>
 </tr>
 </tbody>
 </table>
@@ -662,10 +723,20 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
 <div class="sect2">
 <h3 id="_les_autres">Les autres</h3>
 <div class="paragraph">
-<p>Il existe une multitude d&#8217;autres plugins pour pléthore de besoins :
-- des plugins entreprise
-- github
-- &#8230;&#8203;.</p>
+<p>Il existe une multitude d&#8217;autres plugins pour pléthore de besoins :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>des plugins entreprise</p>
+</li>
+<li>
+<p>github</p>
+</li>
+<li>
+<p>&#8230;&#8203;.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>En plus des plugins existants, il est possible de créer son propre plugin. Nous aborderons ce point plus tard.</p>
@@ -682,11 +753,169 @@ Pour les repository de plugins Maven, il faut utiliser les balises &lt;pluginRep
 </div>
 <div class="sect2">
 <h3 id="_les_goals_standards">Les goals standards</h3>
-
+<div class="sect3">
+<h4 id="_clean_lifecycle">Clean Lifecycle</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pre-clean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">execute processes needed prior to the actual project cleaning</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">clean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove all files generated by the previous build</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">post-clean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">execute processes needed to finalize the project cleaning</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_default_lifecycle">Default Lifecycle</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validate the project is correct and all necessary information is available.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">initialize</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">initialize build state, e.g. set properties or create directories.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate-sources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate any source code for inclusion in compilation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process-sources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process the source code, for example to filter any values.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate-resources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate resources for inclusion in the package.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process-resources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">copy and process the resources into the destination directory, ready for packaging.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">compile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">compile the source code of the project.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process-classes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">post-process the generated files from compilation, for example to do bytecode enhancement on Java classes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate-test-sources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate any test source code for inclusion in compilation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process-test-sources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process the test source code, for example to filter any values.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate-test-resources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create resources for testing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process-test-resources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">copy and process the resources into the test destination directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test-compile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">compile the test source code into the test destination directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process-test-classes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">post-process the generated files from test compilation, for example to do bytecode enhancement on Java classes. For Maven 2.0.5 and above.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">run tests using a suitable unit testing framework. These tests should not require the code be packaged or deployed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prepare-package</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">perform any operations necessary to prepare a package before the actual packaging. This often results in an unpacked, processed version of the package. (Maven 2.1 and above)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">package</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">take the compiled code and package it in its distributable format, such as a JAR.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pre-integration-test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">perform actions required before integration tests are executed. This may involve things such as setting up the required environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integration-test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">process and deploy the package if necessary into an environment where integration tests can be run.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">post-integration-test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">perform actions required after integration tests have been executed. This may including cleaning up the environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verify</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">run any checks to verify the package is valid and meets quality criteria.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">install</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">install the package into the local repository, for use as a dependency in other projects locally.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deploy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_site_lifecycle">Site Lifecycle</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pre-site</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">execute processes needed prior to the actual project site generation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">site</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">generate the project&#8217;s site documentation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">post-site</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">execute processes needed to finalize the site generation, and to prepare for site deployment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">site-deploy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deploy the generated site documentation to the specified web server</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_les_goals_spécifiques">Les goals spécifiques</h3>
-
+<div class="paragraph">
+<p>Les goals spécifiques définis dans les plugins créés en dehors de l&#8217;équipe Maven.
+Tout développeur peut définir un goal spécifique en créant son propre plugin.</p>
+</div>
+<div class="paragraph">
+<p>Nous aborderons la création d&#8217;un plugin spécifique plus tard.</p>
+</div>
 </div>
 </div>
 </div></p>

@@ -6,9 +6,68 @@
     <atom:link href="http://mikrethor.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>jeu., 23 mars 2017 20:46:50 -0400</pubDate>
-    <lastBuildDate>jeu., 23 mars 2017 20:46:50 -0400</lastBuildDate>
+    <pubDate>mer., 29 mars 2017 21:09:00 -0400</pubDate>
+    <lastBuildDate>mer., 29 mars 2017 21:09:00 -0400</lastBuildDate>
 
+    <item>
+      <title>Why I use asciidoc to take my notes</title>
+      <link>http://mikrethor.github.io/blog//blog/2017/why-notes-asciidoc.html</link>
+      <pubDate>mer., 29 mars 2017 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2017/why-notes-asciidoc.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For some time now I have used asciidoc to write all my notes.
+I even use asciidoc to write this blog.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;My main use case was that I wanted to be able to send a proper report of what I was doing especially when investing a problem.
+I took this habit while working with an architect who sent a note to the project manager at the end of each day when working on a problem.
+This note contained all his paths of research.
+Such note was really helpful when you had to work on the problem after him.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The advantages I find in using asciidoc are :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Clear syntax (&lt;a href=&quot;http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/&quot;&gt;quick syntax&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Can generate proper output in many formats&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Can easily be reused in a project documentation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Only need a simple text editor&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I had to find some disadvantages :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Need to have some tools installed to use all the features&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Have to learn the syntax to properly modify a note&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For me no better argument than an example to really show you why I use asciidoc :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/&quot;&gt;source&lt;/a&gt; &amp;#8594; &lt;a href=&quot;http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/&quot;&gt;output&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To properly and easily access my notes I push them in a git repository but I have heard about using asciidoc with Evenote (&lt;a href=&quot;https://emmanuelbernard.com/blog/2017/03/28/evernote-and-vim/&quot;&gt;asciidoc vim Evernote&lt;/a&gt;).&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Écouter sa voie intérieure</title>
       <link>http://mikrethor.github.io/blog//blog/2017/listen-your-inner-voice.html</link>

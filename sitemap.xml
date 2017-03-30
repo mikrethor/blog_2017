@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>http://mikrethor.github.io/blog//blog/lessons/java/chapter007/STREAMS.html</loc>
+        <lastmod>2017-03-23</lastmod>
+    </url>
+    <url>
+        <loc>http://mikrethor.github.io/blog//blog/lessons/maven/chapter003/DEPENDENCIES.html</loc>
+        <lastmod>2017-03-23</lastmod>
+    </url>
+    <url>
         <loc>http://mikrethor.github.io/blog//blog/lessons/maven/chapter001/INTRO.html</loc>
         <lastmod>2017-03-21</lastmod>
     </url>
     <url>
         <loc>http://mikrethor.github.io/blog//blog/lessons/maven/chapter002/FIRSTPROJECT.html</loc>
         <lastmod>2017-03-21</lastmod>
+    </url>
+    <url>
+        <loc>http://mikrethor.github.io/blog//blog/2017/why-notes-asciidoc.html</loc>
+        <lastmod>2017-03-29</lastmod>
     </url>
     <url>
         <loc>http://mikrethor.github.io/blog//blog/2017/listen-your-inner-voice.html</loc>
