@@ -1,0 +1,44 @@
+= Note  US 666
+
+As a salesman, I want to be able to calculate a different discount wether the customer is a private person or a compagny so that each discount is adapted to the target market
+
+== Context 
+
+The compagny wants to adapt the discount to the customer type.
+
+== Technical Spec
+
+[[main-classes]]
+.The PlantUML block extension class
+[plantuml, sample-plantuml-diagram, alt="Class diagram"]
+----
+class CompagnyDiscount
+class ParticularDiscount
+interface IDiscount
+IDiscount <|-- ParticularDiscount
+IDiscount <|-- CompagnyDiscount
+----
+
+The customer table has to contain the customer type information
+
+[source,sql]
+----
+ALTER TABLE sales.customer ADD type CHAR(1) enum('P','E') NOT NULL ; 
+----
+
+== Environments
+
+[ditaa,"environnements","png"]
+----
+    +-----+      +------+
+    | Dev +----->|Env 1 |
+    +-----+      +------+
+    
+    +-----+      +------+
+    | QA  +----->|Env 2 |
+    +-----+      +------+
+	
+    +-----+      +------+
+    | Ic  +----->|Env ic|
+    +-----+      +------+
+----
