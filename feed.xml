@@ -6,9 +6,331 @@
     <atom:link href="http://mikrethor.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>mer., 29 mars 2017 21:09:00 -0400</pubDate>
-    <lastBuildDate>mer., 29 mars 2017 21:09:00 -0400</lastBuildDate>
+    <pubDate>lun., 3 avr. 2017 01:00:01 -0400</pubDate>
+    <lastBuildDate>lun., 3 avr. 2017 01:00:01 -0400</lastBuildDate>
 
+    <item>
+      <title>Maven Polyglot - Forget about pom.xml</title>
+      <link>http://mikrethor.github.io/blog//blog/2017/maven-polyglot.html</link>
+      <pubDate>dim., 2 avr. 2017 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2017/maven-polyglot.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Fed up of pom xml files when you use Maven? Here is the solution : &lt;a href=&quot;https://github.com/takari/polyglot-maven&quot;&gt;Maven Polyglot&lt;/a&gt;.
+Maven Polyglot is out there since over 5 years now and can be used to write pom file in other languages such as :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Atom&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Groovy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Clojure&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ruby&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Scala&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;YAML&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To give it a try with an existing project, we have to use the following command line in the project :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;mvn io.takari.polyglot:polyglot-translate-plugin:translate -Dinput=pom.xml -Doutput=pom.{format}&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Where {format} is the file extension of the target format.
+In my case I tried with YAML format so I replaced {format} with yml.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This the pom.xml I tried out :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;project xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&amp;gt;
+    &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
+    &amp;lt;groupId&amp;gt;fr.ablx.yml&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;backend&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;0.0.1-SNAPSHOT&amp;lt;/version&amp;gt;
+
+    &amp;lt;properties&amp;gt;
+        &amp;lt;!-- Project Properties --&amp;gt;
+        &amp;lt;dataBaseSchema&amp;gt;DATABASE&amp;lt;/dataBaseSchema&amp;gt;
+        &amp;lt;!-- Build properties --&amp;gt;
+        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+        &amp;lt;maven.compiler.source&amp;gt;${java.version}&amp;lt;/maven.compiler.source&amp;gt;
+        &amp;lt;maven.compiler.target&amp;gt;${java.version}&amp;lt;/maven.compiler.target&amp;gt;
+        &amp;lt;project.build.sourceEncoding&amp;gt;UTF-8&amp;lt;/project.build.sourceEncoding&amp;gt;
+
+        &amp;lt;spring.boot.version&amp;gt;1.4.2.RELEASE&amp;lt;/spring.boot.version&amp;gt;
+        &amp;lt;spring.loaded.version&amp;gt;1.2.6.RELEASE&amp;lt;/spring.loaded.version&amp;gt;
+        &amp;lt;lombok.version&amp;gt;1.16.10&amp;lt;/lombok.version&amp;gt;
+        &amp;lt;jsonpath.version&amp;gt;2.2.0&amp;lt;/jsonpath.version&amp;gt;
+        &amp;lt;!-- Report properties --&amp;gt;
+        &amp;lt;maven.site.version&amp;gt;3.4&amp;lt;/maven.site.version&amp;gt;
+        &amp;lt;asciidoctor.version&amp;gt;1.5.3&amp;lt;/asciidoctor.version&amp;gt;
+
+        &amp;lt;debug&amp;gt;true&amp;lt;/debug&amp;gt;
+    &amp;lt;/properties&amp;gt;
+
+    &amp;lt;dependencies&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${spring.boot.version}&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;spring-boot-starter-test&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${spring.boot.version}&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;spring-boot-starter-data-jpa&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${spring.boot.version}&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;com.jayway.jsonpath&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;json-path&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;2.2.0&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;lombok&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;${lombok.version}&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.hsqldb&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;hsqldb&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;2.3.4&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;commons-dbcp&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;commons-dbcp&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;1.4&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;!-- https://mvnrepository.com/artifact/com.google.code.gson/gson --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;com.google.code.gson&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;gson&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;2.8.0&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.apache.commons&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;commons-lang3&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;3.5&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+
+    &amp;lt;/dependencies&amp;gt;
+
+    &amp;lt;build&amp;gt;
+        &amp;lt;resources&amp;gt;
+            &amp;lt;resource&amp;gt;
+                &amp;lt;filtering&amp;gt;true&amp;lt;/filtering&amp;gt;
+                &amp;lt;directory&amp;gt;${project.build.sourceDirectory}\..\resources&amp;lt;/directory&amp;gt;
+            &amp;lt;/resource&amp;gt;
+        &amp;lt;/resources&amp;gt;
+        &amp;lt;testResources&amp;gt;
+            &amp;lt;testResource&amp;gt;
+                &amp;lt;filtering&amp;gt;true&amp;lt;/filtering&amp;gt;
+                &amp;lt;directory&amp;gt;${project.build.testSourceDirectory}\..\resources&amp;lt;/directory&amp;gt;
+            &amp;lt;/testResource&amp;gt;
+        &amp;lt;/testResources&amp;gt;
+        &amp;lt;finalName&amp;gt;mysample-web&amp;lt;/finalName&amp;gt;
+        &amp;lt;plugins&amp;gt;
+            &amp;lt;plugin&amp;gt;
+                &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;spring-boot-maven-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;${spring.boot.version}&amp;lt;/version&amp;gt;
+                &amp;lt;!-- &amp;lt;configuration&amp;gt; &amp;lt;fork&amp;gt;true&amp;lt;/fork&amp;gt; &amp;lt;jvmArguments&amp;gt; -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+                    &amp;lt;/jvmArguments&amp;gt; &amp;lt;/configuration&amp;gt; --&amp;gt;
+                &amp;lt;dependencies&amp;gt;
+                    &amp;lt;dependency&amp;gt;
+                        &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
+                        &amp;lt;artifactId&amp;gt;springloaded&amp;lt;/artifactId&amp;gt;
+                        &amp;lt;version&amp;gt;${spring.loaded.version}&amp;lt;/version&amp;gt;
+                    &amp;lt;/dependency&amp;gt;
+                &amp;lt;/dependencies&amp;gt;
+            &amp;lt;/plugin&amp;gt;
+
+            &amp;lt;plugin&amp;gt;
+                &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;maven-site-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;${maven.site.version}&amp;lt;/version&amp;gt;
+                &amp;lt;dependencies&amp;gt;
+                    &amp;lt;dependency&amp;gt;
+                        &amp;lt;groupId&amp;gt;org.asciidoctor&amp;lt;/groupId&amp;gt;
+                        &amp;lt;artifactId&amp;gt;asciidoctor-maven-plugin&amp;lt;/artifactId&amp;gt;
+                        &amp;lt;version&amp;gt;1.5.3&amp;lt;/version&amp;gt;
+                    &amp;lt;/dependency&amp;gt;
+                &amp;lt;/dependencies&amp;gt;
+            &amp;lt;/plugin&amp;gt;
+        &amp;lt;/plugins&amp;gt;
+    &amp;lt;/build&amp;gt;
+
+    &amp;lt;repositories&amp;gt;
+        &amp;lt;repository&amp;gt;
+            &amp;lt;id&amp;gt;spring-snapshots&amp;lt;/id&amp;gt;
+            &amp;lt;url&amp;gt;http://repo.spring.io/libs-snapshot&amp;lt;/url&amp;gt;
+            &amp;lt;snapshots&amp;gt;
+                &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;
+            &amp;lt;/snapshots&amp;gt;
+        &amp;lt;/repository&amp;gt;
+        &amp;lt;repository&amp;gt;
+            &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+            &amp;lt;url&amp;gt;https://repo1.maven.org/maven2&amp;lt;/url&amp;gt;
+            &amp;lt;releases&amp;gt;
+                &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;
+            &amp;lt;/releases&amp;gt;
+        &amp;lt;/repository&amp;gt;
+    &amp;lt;/repositories&amp;gt;
+
+    &amp;lt;pluginRepositories&amp;gt;
+        &amp;lt;pluginRepository&amp;gt;
+            &amp;lt;id&amp;gt;spring-snapshots&amp;lt;/id&amp;gt;
+            &amp;lt;url&amp;gt;http://repo.spring.io/libs-snapshot&amp;lt;/url&amp;gt;
+            &amp;lt;snapshots&amp;gt;
+                &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;
+            &amp;lt;/snapshots&amp;gt;
+        &amp;lt;/pluginRepository&amp;gt;
+        &amp;lt;pluginRepository&amp;gt;
+            &amp;lt;id&amp;gt;central&amp;lt;/id&amp;gt;
+            &amp;lt;url&amp;gt;https://repo1.maven.org/maven2&amp;lt;/url&amp;gt;
+            &amp;lt;releases&amp;gt;
+                &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;
+            &amp;lt;/releases&amp;gt;
+        &amp;lt;/pluginRepository&amp;gt;
+    &amp;lt;/pluginRepositories&amp;gt;
+&amp;lt;/project&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This is the pom.yml file I obtained ;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-yml&quot; data-lang=&quot;yml&quot;&gt;modelVersion: 4.0.0
+groupId: fr.ablx.yml
+artifactId: backend
+version: 0.0.1-SNAPSHOT
+packaging: jar
+properties: {debug: true, asciidoctor.version: 1.5.3, lombok.version: 1.16.10, dataBaseSchema: DATABASE,
+  maven.site.version: 3.4, java.version: 1.8, maven.compiler.target: &apos;${java.version}&apos;,
+  spring.loaded.version: 1.2.6.RELEASE, project.build.sourceEncoding: UTF-8, jsonpath.version: 2.2.0,
+  spring.boot.version: 1.4.2.RELEASE, maven.compiler.source: &apos;${java.version}&apos;}
+dependencies:
+- {artifactId: spring-boot-starter-web, groupId: org.springframework.boot, version: &apos;${spring.boot.version}&apos;}
+- {artifactId: spring-boot-starter-test, groupId: org.springframework.boot, scope: test,
+  version: &apos;${spring.boot.version}&apos;}
+- {artifactId: spring-boot-starter-data-jpa, groupId: org.springframework.boot, version: &apos;${spring.boot.version}&apos;}
+- {artifactId: json-path, groupId: com.jayway.jsonpath, scope: test, version: 2.2.0}
+- {artifactId: lombok, groupId: org.projectlombok, version: &apos;${lombok.version}&apos;}
+- {artifactId: hsqldb, groupId: org.hsqldb, version: 2.3.4}
+- {artifactId: commons-dbcp, groupId: commons-dbcp, version: 1.4}
+- {artifactId: gson, groupId: com.google.code.gson, scope: test, version: 2.8.0}
+- {artifactId: commons-lang3, groupId: org.apache.commons, version: 3.5}
+build:
+  finalName: mysample-web
+  plugins:
+  - groupId: org.springframework.boot
+    artifactId: spring-boot-maven-plugin
+    version: ${spring.boot.version}
+    dependencies:
+    - {artifactId: springloaded, groupId: org.springframework, version: &apos;${spring.loaded.version}&apos;}
+  - groupId: org.apache.maven.plugins
+    artifactId: maven-site-plugin
+    version: ${maven.site.version}
+    dependencies:
+    - {artifactId: asciidoctor-maven-plugin, groupId: org.asciidoctor, version: 1.5.3}
+  resources:
+  - {directory: &apos;${project.build.sourceDirectory}\..\resources&apos;, filtering: true}
+  testResources:
+  - {directory: &apos;${project.build.testSourceDirectory}\..\resources&apos;, filtering: true}
+pluginRepositories:
+- id: spring-snapshots
+  layout: default
+  snapshots: {enabled: true}
+  url: http://repo.spring.io/libs-snapshot
+- id: central
+  layout: default
+  releases: {enabled: true}
+  url: https://repo1.maven.org/maven2
+pomFile: {}
+repositories:
+- id: spring-snapshots
+  layout: default
+  snapshots: {enabled: true}
+  url: http://repo.spring.io/libs-snapshot
+- id: central
+  layout: default
+  releases: {enabled: true}
+  url: https://repo1.maven.org/maven2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We can see the pom.xml has been shrinked to a pom.yml with 56 line. A win of 100 lines.
+So big pom files become more readable.
+After the creation of the pom.yml, I had to add the following extensions.xml in my project :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;extensions&amp;gt;
+  &amp;lt;extension&amp;gt;
+    &amp;lt;groupId&amp;gt;io.takari.polyglot&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;polyglot-yaml&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;0.1.19&amp;lt;/version&amp;gt;
+  &amp;lt;/extension&amp;gt;
+&amp;lt;/extensions&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Yes we can&amp;#8217;t remove XML completely but this file is rather simple and may be one day we will be able to completely get rid of it.
+The extensions.xml has to be placed in the project folder in the folder .mvn.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The pom.yml file went fine except for the line pomFile:{}.
+This line broke my build but when I removed it everything went back to normal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now I am able to use my mvn command as before.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ backend ---
+[INFO] Building jar: /home/thor/projets/sources/java/backendyml/target/mysample-web.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 7.960 s
+[INFO] Finished at: 2017-04-02T16:56:33-04:00
+[INFO] Final Memory: 20M/403M
+[INFO] ------------------------------------------------------------------------&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Why I use asciidoc to take my notes</title>
       <link>http://mikrethor.github.io/blog//blog/2017/why-notes-asciidoc.html</link>
@@ -61,7 +383,7 @@ Such note was really helpful when you had to work on the problem after him.&lt;/
 &lt;p&gt;For me no better argument than an example to really show you why I use asciidoc :&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/&quot;&gt;source&lt;/a&gt; &amp;#8594; &lt;a href=&quot;http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/&quot;&gt;output&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/mikrethor/blog/tree/master/src/main/asciidoc/asciidoc-note-example.ad&quot;&gt;source&lt;/a&gt; &amp;#8594; &lt;a href=&quot;https://mikrethor.github.io/blog/blog/2017/asciidoc-note-example.pdf&quot;&gt;output&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;To properly and easily access my notes I push them in a git repository but I have heard about using asciidoc with Evenote (&lt;a href=&quot;https://emmanuelbernard.com/blog/2017/03/28/evernote-and-vim/&quot;&gt;asciidoc vim Evernote&lt;/a&gt;).&lt;/p&gt;
