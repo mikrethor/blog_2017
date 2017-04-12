@@ -24,7 +24,8 @@ Xavier Bouclet
 
 == Installation
 
-	1. Téléchargement et installation du JDK sur le site de http://www.oracle.com/technetwork/java/javase/downloads/[Java]
+	1. Téléchargement du http://www.oracle.com/technetwork/java/javase/downloads/[JDK]
 	2. Installé l'éxecutable téléchargé
-
-	definir maven home et ajouter au path
+	3. Téléchargement de Maven sur le site de https://maven.apache.org/download.cgi[Maven]
+    4. Installé l'éxecutable téléchargé
+    5. Définir maven home et ajouter  le répertoire bin au path
