@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Les streams</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link href="../../../../css/prettify.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../../../">Xavier's Thoughts</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../../../index.html">Home</a></li>
+            <li><a href="../../../../about.html">About</a></li>
+            <li><a href="../../../../feed.xml">Subscribe</a></li>
+            <!--<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>-->
+          </ul>
+           <ul class="nav navbar-nav navbar-right">
+          	      	<li><a href="https://github.com/mikrethor"><i class="fa fa-github"></i></a></li>
+          	        <li><a href="https://twitter.com/XavierBOUCLET"><i class="fa fa-twitter"></i></a>
+           </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">	
+	<div class="page-header">
+		<h1>Les streams</h1>
+	</div>
+
+	<p><em>23 mars 2017</em></p>
+
+	<p><div class="sect2">
+<h3 id="_principe">Principe</h3>
+<div class="paragraph">
+<p>Le principe des streams est de faciliter et d&#8217;optimiser les traitements sur des flux de données.
+L&#8217;optimisation vient de la facilité à rendre parallèle un stream lorsque c&#8217;est possible.</p>
+</div>
+<div class="paragraph">
+<p>Un stream consiste :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>à partir d&#8217;une source (une collection, un tableau, un flux d&#8217;entrée/sortie&#8230;&#8203;.)</p>
+</li>
+<li>
+<p>de réaliser 0 ou plusieurs opérations intermédiaires</p>
+</li>
+<li>
+<p>ainsi qu&#8217;une seule opération finale.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>L&#8217;Éxecution du traitement commence lorsque l&#8217;opération finale est invoquée et
+ se termine quand l&#8217;opération finale se finit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_les_différents_streams">Les différents streams</h3>
+<div class="paragraph">
+<p>Il existe 3 types de streams :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le stream séquentiel</p>
+</li>
+<li>
+<p>Le stream parallèle</p>
+</li>
+<li>
+<p>Le stream de primitives de type Double, Int ou Long</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_stream">Stream</h4>
+<div class="paragraph">
+<p>Un stream sur une collection par exemple va réaliser les opérations de manière séquentielle.
+Pour déclarer un stream sur une collection, il faut utiliser la méthode .stream().</p>
+</div>
+<div class="paragraph">
+<p>Exemple :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">List&lt;Personne&gt; listePersonnes = Arrays.asList(
+	new Personne("A", "Gilles", 18),
+	new Personne("Pan", "Peter", 16),
+	new Personne("Rose", "Pamela", 42),
+	new Personne("Divad", "David", 16),
+	new Personne("Min", "Max", 18));
+List&lt;Personne&gt; listePersonnes =  new ArrayList&lt;&gt;();
+Stream&lt;Personne&gt; stream=listePersonnes.stream();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Puis avec l&#8217;objet stream, il d&#8217;accéder aux opérations spécifiques aux streams.
+Nous allons voir ceci plus en détail dans la suite.</p>
+</div>
+<div class="paragraph">
+<p>Dans le code ci-dessous, le stream va afficher les éléments de la liste de manière séquentielle.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">stream.forEach(System.out::println);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Je déconseille d&#8217;utiliser un stream.foreach pour juste afficher
+ les données le forEach de Collections est plus adapté.
+Car il utilise directement java.lang.Iterable.forEach et non java.util.stream.forEach.</p>
+</div>
+<div class="paragraph">
+<p>Dans le cas de notre liste ça donne le code suivant :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">listePersonnes.forEach(System.out::println);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parrallelestream">ParralleleStream</h4>
+<div class="paragraph">
+<p>Dans l&#8217;exemple ci-dessous c&#8217;est le même principe sauf que l&#8217;affichage
+ ne va pas suivre l&#8217;ordre séquentiel de la liste puisque le traitement se fait en parallèle.
+Mais attention parallèle ne veut pas dire plus rapide car notre exemple ne permet pas
+de bénéficier de compenser le surcout engendrer par le parallèlisme.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Stream&lt;Personne&gt; parallelStream=listePersonnes.stream();
+parallelStream.forEach(System.out::println);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_intstream_doublestream_longstream">IntStream, DoubleStream, LongStream</h4>
+<div class="paragraph">
+<p>Ces streams permettent de réaliser des opérations sur des ensembles d&#8217;éléments de type :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integer</p>
+</li>
+<li>
+<p>Double</p>
+</li>
+<li>
+<p>Long</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;exemple ci-dessous, la méthode range permet de créer un IntStream avec des éléments
+de type Integer allant de 0 à 9. Puis la méthode min permet de déterminer le plus petit élément de cet
+ensemble.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">OptionalInt intStream = IntStream.range(0, 10).min();
+System.out.println(intStream.getAsInt());
+//0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le type retourné par min n&#8217;est pas de type Integer mais OptionalInt.
+Il est nécessaire d&#8217;utiliser getAsInt() pour obtenir la valeur entière attendu.
+Le type OptionalInt contient ou ne contient pas la valeur entière attendu.
+Pour vérifier, si une valeur est présente, il faut utiliser la méthode isPresent() de l&#8217;OptionalInt.</p>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;exemple ci-dessous, la méthode of permet de créer un DoubleStream avec les éléments contenus entre parenthèses.
+Les éléments sont automatiquement convertis en Double.
+Puis la méthode average permet de déterminer la moyenne de tous les éléments.
+Comme pour OptionalInt, la valeur est conservée dans un OptionalDouble et elle
+est accessible par la méthode getAsDouble().</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">OptionalDouble doubleStream = DoubleStream.of(2, 4, 6, 8, 10, 12, 14).average();
+System.out.println(doubleStream.getAsDouble());
+//8</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;exemple LongStream ci-dessous est très proche de l&#8217;exemple IntStream sauf que
+ cette fois-ci c&#8217;est le max qui est retourné dans un OptionalLong dont la valeur
+ est accessible avec la méthode getAsLong().</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">OptionalLong longStream = LongStream.range(0, 10).max();
+System.out.println(longStream.getAsLong());
+//9</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_les_opérations_intermédiaires">Les opérations intermédiaires</h3>
+<div class="sect3">
+<h4 id="_filter">Filter</h4>
+<div class="paragraph">
+<p>L&#8217;opération filter permet de ne retenir que les éléments qui valident le test.
+Dans l&#8217;exemple ci-dessous, seules les personnes qui ont plus de 18 ans sont affichées.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">stream.filter(s -&gt; s.getAge() &gt;= 18).forEach(System.out::println);
+//Gilles A
+//Pamela Rose
+//Max Min</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_map">Map</h4>
+<div class="paragraph">
+<p>L&#8217;opération map permet de transformer le type du stream dans un nouveau type et de faire des transformation.
+Dans le cas ci-dessous, le stream de personne est transformé en stream de chaîne de caractères.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Stream&lt;String&gt; stringStream = stream.map(s -&gt; s.toString());
+stringStream.forEach(System.out::println);
+//Gilles A
+//Peter Pan
+//Pamela Rose
+//David Divad
+//Max Min</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;opération mapToInt permet de transformer le type du stream en IntStream.
+Dans le cas ci-dessous, le stream de personne est transformé en IntStream et ce IntStream permet de donner l&#8217;age le plus haut de personnes contenues dans listePersonnes.
+Pour l&#8217;exemple, l&#8217;age a été transformé en String. Sans cette transformation, le mapToInt deviendrait inutile.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">IntStream integerStream = listePersonne.stream().map(s -&gt; String.valueOf(s.getAge()))
+				.mapToInt(Integer::parseInt);
+OptionalInt ageMax = integerStream.max();
+System.out.println(ageMax);
+// 42</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">DoubleStream doubleStream = listePersonne.stream().map(s -&gt; String.valueOf(s.getAge()))
+		.mapToDouble(Integer::parseInt);
+OptionalDouble ageMax = doubleStream.max();
+System.out.println(ageMax);
+// 42.0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">LongStream longStream = listePersonne.stream().map(s -&gt; String.valueOf(s.getAge()))
+		.mapToLong(Integer::parseInt);
+OptionalLong ageMax = longStream.max();
+System.out.println(ageMax);
+// 42</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get">Get</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_limit">Limit</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_max_min_et_count">Max, min et count</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_distinct_et_sorted">Distinct et sorted</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_les_opérations_avancées">Les opérations avancées</h3>
+<div class="sect3">
+<h4 id="_collect">Collect</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_flatmap">FlatMap</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_reduce">Reduce</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_l_opération_finale">L&#8217;opération finale</h3>
+<div class="sect3">
+<h4 id="_nonematch">NoneMatch</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_anymatch">AnyMatch</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_foreach">ForEach</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exemples">Exemples</h3>
+<div class="paragraph">
+<p><a href="https://blog.jooq.org/2015/12/08/3-reasons-why-you-shouldnt-replace-your-for-loops-by-stream-foreach/" class="bare">https://blog.jooq.org/2015/12/08/3-reasons-why-you-shouldnt-replace-your-for-loops-by-stream-foreach/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_références">Références</h3>
+<div class="paragraph">
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html" class="bare">https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/" class="bare">http://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.mkyong.com/java8/java-8-flatmap-example/" class="bare">https://www.mkyong.com/java8/java-8-flatmap-example/</a></p>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../../../js/bootstrap.min.js"></script>
+    <script src="../../../../js/prettify.js"></script>
+    
+  </body>
+</html>
