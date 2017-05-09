@@ -6,9 +6,56 @@
     <atom:link href="http://mikrethor.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>mar., 18 avr. 2017 22:40:08 -0400</pubDate>
-    <lastBuildDate>mar., 18 avr. 2017 22:40:08 -0400</lastBuildDate>
+    <pubDate>mar., 9 mai 2017 01:36:46 -0400</pubDate>
+    <lastBuildDate>mar., 9 mai 2017 01:36:46 -0400</lastBuildDate>
 
+    <item>
+      <title>Lost your OSMC password ? Reset it</title>
+      <link>http://mikrethor.github.io/blog//blog/2017/osmclostpassword.html</link>
+      <pubDate>mar., 9 mai 2017 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2017/osmclostpassword.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A few weeks ago, I decided to change the default osmc password to something more secure.
+Of course I managed to forget this secured password.
+Fortunately for me there is a way to reset it without damaging anything.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Stop your raspberry&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Remove your sdcard and plug it in another computer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On the sdcard edit the file cmdline.txt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Write init=/bin/bash at the end of the first line&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Save the file and plug back the sdcard in your raspberry&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Power the RB and Run passwd osmc&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Change your password&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Remove init=/bin/bash the same you used to write it in the cmdline.txt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Et voilà&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Have fun.&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Vaadin 8</title>
       <link>http://mikrethor.github.io/blog//blog/2017/vaadin8.html</link>
